@@ -70,14 +70,9 @@ app.get('/captcha', function(req, res, next){
             }
  
             res.json({imglnk: result["GetImageUrlResult"], key: captchaKey});
-            res.render('results', {
-                title: captchaKey,
-                imglk: result["GetImageUrlResult"]
-                });
             });
         });
- 
-
+  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -12,6 +12,9 @@ var url = "https://captchaservice.rentmanager.com/CaptchaService.asmx?WSDL";
 
 var app = express();
 
+//set port for Heroku
+var port = process.env.PORT || 8080;
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

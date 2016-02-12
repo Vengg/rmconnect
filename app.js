@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+//set captch paramaters
 var captchaParams = {BackColor: 'white', 
 					BackgroundNoise: 'Low', 
 					FontName: 'Times New Roman', 
@@ -41,25 +42,37 @@ var captchaParams = {BackColor: 'white',
 					TextLength: 6};
 
 
+//format paramaters for SOAP					
 var CreateParameters = {parameters: captchaParams};
+var results;
+var captchaKey = "";
+var imgUrl = "54";
 
 
-app.get('/soap', function(req, res){
-	var result;
-	
+app.get('/key', function(req, res, next){	
 	soap.createClient(url, function(err, client) {
 		client.CaptchaService.CaptchaServiceSoap12.Create(CreateParameters, function(err, result) {
 				console.log(result);
 				console.log(client.describe());
-				res.json(result);	
-			});			
-	});
-	
-	app.render('results', {
-		title: 'Respond'
-		
+				captchaKey = result["CreateResult"],toString();
+				console.log(captchaKey);
+				res.render('results', {title: captchaKey});
+		});		
+	});		
+});					
+
+app.get('/image', function(req, res) {	
+	soap.createClient(url, function(err, client) {
+		client.CaptchaService.CaptchaServiceSoap12.GetImageUrl({'key': captchaKey}, function(err, result){
+			console.log(result);
+			res.render('results', {
+				title: captchaKey,
+				imglk: result["GetImageUrlResult"]
+				});	
+			});
 	});
 });
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var soap = require('soap');
+var cors = require('cors');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -48,6 +49,7 @@ var results;
 var captchaKey = "";
 var imgUrl = "54";
 
+app.use(cors());
 
 app.get('/key', function(req, res, next){	
 	soap.createClient(url, function(err, client) {

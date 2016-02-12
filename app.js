@@ -57,7 +57,7 @@ soap.createClient(url, function(err, newClient) {
     client = newClient;
 });
  
-app.get('/captcha', function(req, res, next){
+app.get('/captcha', cors(), function(req, res, next){
     client.CaptchaService.CaptchaServiceSoap12.Create(CreateParameters, function(err, result) {
         if (err) {
             next(err);

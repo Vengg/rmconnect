@@ -56,9 +56,9 @@ app.get('/key', function(req, res, next){
 		client.CaptchaService.CaptchaServiceSoap12.Create(CreateParameters, function(err, result) {
 				console.log(result);
 				console.log(client.describe());
-				captchaKey = result["CreateResult"],toString();
+				captchaKey = result["CreateResult"];
 				console.log(captchaKey);
-				res.render('results', {title: captchaKey});
+				res.send(captchaKey);
 		});		
 	});		
 });					
@@ -67,6 +67,7 @@ app.get('/image', function(req, res) {
 	soap.createClient(url, function(err, client) {
 		client.CaptchaService.CaptchaServiceSoap12.GetImageUrl({'key': captchaKey}, function(err, result){
 			console.log(result);
+			res.send(result["GetImageUrlResult"]);
 			res.render('results', {
 				title: captchaKey,
 				imglk: result["GetImageUrlResult"]

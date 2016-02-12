@@ -60,13 +60,13 @@ soap.createClient(url, function(err, newClient) {
 app.get('/captcha', function(req, res, next){
     client.CaptchaService.CaptchaServiceSoap12.Create(CreateParameters, function(err, result) {
         if (err) {
-            return next(new Error('Couldn't get captcha key.'));
+            next(err);
         }
  
         var captchaKey = result["CreateResult"];
         client.CaptchaService.CaptchaServiceSoap12.GetImageUrl({'key': captchaKey}, function(err, result) {
             if (err) {
-                return next(new Error('Couldn't get captcha image.'));
+                next(err);
             }
  
             res.json({imglnk: result["GetImageUrlResult"], key: captchaKey});

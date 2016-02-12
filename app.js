@@ -45,36 +45,38 @@ var captchaParams = {BackColor: 'white',
 
 //format paramaters for SOAP					
 var CreateParameters = {parameters: captchaParams};
-var results;
-var captchaKey = "";
-var imgUrl = "54";
 
 app.use(cors());
 
-app.get('/key', function(req, res, next){	
-	soap.createClient(url, function(err, client) {
-		client.CaptchaService.CaptchaServiceSoap12.Create(CreateParameters, function(err, result) {
-				console.log(result);
-				console.log(client.describe());
-				captchaKey = result["CreateResult"];
-				console.log(captchaKey);
-				res.send(captchaKey);
-		});		
-	});		
-});					
-
-app.get('/image', function(req, res) {	
-	soap.createClient(url, function(err, client) {
-		client.CaptchaService.CaptchaServiceSoap12.GetImageUrl({'key': captchaKey}, function(err, result){
-			console.log(result);
-			res.send(result["GetImageUrlResult"]);
-			res.render('results', {
-				title: captchaKey,
-				imglk: result["GetImageUrlResult"]
-				});	
-			});
-	});
+var client;
+soap.createClient(url, function(err, newClient) {
+    if (err) {
+        // Shut down the server, all is lost.
+    }
+ 
+    client = newClient;
 });
+ 
+app.get('/captcha', function(req, res, next){
+    client.CaptchaService.CaptchaServiceSoap12.Create(CreateParameters, function(err, result) {
+        if (err) {
+            return next(new Error('Couldn't get captcha key.'));
+        }
+ 
+        var captchaKey = result["CreateResult"];
+        client.CaptchaService.CaptchaServiceSoap12.GetImageUrl({'key': captchaKey}, function(err, result) {
+            if (err) {
+                return next(new Error('Couldn't get captcha image.'));
+            }
+ 
+            res.json({imglnk: result["GetImageUrlResult"], key: captchaKey});
+            res.render('results', {
+                title: captchaKey,
+                imglk: result["GetImageUrlResult"]
+                });
+            });
+        });
+ 
 
 
 // catch 404 and forward to error handler

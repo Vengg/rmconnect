@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var soap = require('soap');
 var cors = require('cors');
+var request = require('request');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -73,6 +74,12 @@ app.get('/captcha', cors(), function(req, res, next){
             });
         });
   });
+
+app.use('/api', function(req, res) {
+	var url = "http://applicationgateway.rentmanager.com/WebApplicationHandler.aspx";
+	req.pipe(request(url)).pipe(res);
+});
+  
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

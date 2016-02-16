@@ -76,8 +76,11 @@ app.get('/captcha', cors(), function(req, res, next){
   });
 
 app.post('/api', function(req, res) {
+	console.log("I'm Here");
 	var url = "http://applicationgateway.rentmanager.com/WebApplicationHandler.aspx";
 	req.pipe(request.post(url)).pipe(res);
+	res.send();
+	
 });
   
 

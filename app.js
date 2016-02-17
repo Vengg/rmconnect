@@ -86,7 +86,6 @@ app.post('/api', function(req, res) {
 				console.log(response);
 			}
 		});
-	req.pipe(fwdurl);
 	console.log(res);
 	fwdurl.pipe(res);
 	

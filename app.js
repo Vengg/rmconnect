@@ -77,7 +77,15 @@ app.get('/captcha', cors(), function(req, res, next){
 
 app.post('/api', function(req, res) {
 	console.log("I'm Here");
-	var fwdurl = request("http://applicationgateway.rentmanager.com/WebApplicationHandler.aspx");
+	var fwdurl = request("http://applicationgateway.rentmanager.com/WebApplicationHandler.aspx", function (error, response, body){
+			if (err) {
+				next(err)
+			}
+			else {
+				console.log(body);
+				console.log(response);
+			}
+		});
 	req.pipe(fwdurl);
 	console.log(res);
 	fwdurl.pipe(res);

@@ -83,10 +83,10 @@ app.post('/api', function(req, res) {
 			}
 			else {
 				//console.log(body);
-				console.log(response);
+				console.log("original" + response);
 			}
 		});
-	console.log(res);
+	console.log("passed" + res);
 	fwdurl.pipe(res);
 	
 	

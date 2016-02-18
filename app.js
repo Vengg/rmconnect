@@ -87,7 +87,7 @@ app.post('/api', function(req, res) {
 				console.log("This is the Response");
 				//console.log(response);
 				console.log("This is what is being sent back");
-				console.log(res);
+				//console.log(res);
 				response.pipe(res);
 			}
 		})

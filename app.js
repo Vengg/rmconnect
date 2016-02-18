@@ -82,11 +82,11 @@ app.post('/api', function(req, res) {
 				next(err)
 			}
 			else {
-				//console.log(body);
-				console.log("original" + response);
+				console.log(body);
+				console.log(response);
 			}
 		});
-	console.log("passed" + res);
+	console.log(res);
 	fwdurl.pipe(res);
 	
 	

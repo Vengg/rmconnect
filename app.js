@@ -83,9 +83,9 @@ app.post('/api', function(req, res) {
 			}
 			else {
 				console.log("This is the Body");
-				console.log(body);
+				//console.log(body);
 				console.log("This is the Response");
-				console.log(response);
+				//console.log(response);
 			}
 		})
 	);

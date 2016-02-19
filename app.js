@@ -91,7 +91,7 @@ app.post('/api', function(req, res) {
 			}
 		})
 	);
-	//console.log(res);
+	console.log(res);
 	fwdurl.pipe(res);
 	
 	

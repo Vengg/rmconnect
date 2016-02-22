@@ -41,6 +41,7 @@ var captchaParams = {BackColor: 'white',
 					FontWarp: 'Low', 
 					ForeColor: 'black', 
 					LineNoise: 'NotSet', 
+					NoiseColor: 'orange',
 					TextLength: 6};
 
 

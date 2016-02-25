@@ -85,15 +85,11 @@ app.post('/api', function(req, res) {
 			else {
 				console.log("This is the Body");
 				console.log(body);
-				console.log("This is the Response");
-				console.log(response);			
-				
-			}
+				}
 		})
 	);
 	console.log("This is what is being sent back");
 	console.log(res.body);
-	console.log(res);
 	fwdurl.pipe(res);
 	
 	

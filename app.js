@@ -117,17 +117,16 @@ app.post('/formSend', function(req, res) {
 				else {
 					var errMessage = body.toString().match(/errormessage' value='(.{7})/)[1];
 					console.log(errMessage);
-					}		
-				}
+				}		
 			}
-		})
+		});
 	);
 	console.log("This is what is being sent back");
 	console.log(res.body);
 	fwdurl.pipe(res);
-	
-	
 });
+	
+	
   
 
 // catch 404 and forward to error handler

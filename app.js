@@ -113,6 +113,7 @@ app.post('/formSend', function(req, res) {
 						'<a href="http://www.authorize.net/" id="AuthorizeNetText" target="_blank">Web Ecommerce</a></div>' +
 						'<p dir="ltr">&nbsp;</p>' +
 						'</div>');
+				}
 				else {
 					var errMessage = body.toString().match(/errormessage' value='(.{7})/)[1];
 					console.log(errMessage);

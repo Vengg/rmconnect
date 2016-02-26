@@ -6,14 +6,14 @@ block content
   p Would you like to pay the application fee online? Select an option below:
   p $45 - 1 applicant
   
-  form(name="PrePage", method="post", action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx")
+  form(name="PrePage", method="post", action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx", target="_blank")
    input(type="hidden", name="LinkId", value="eedfd428-6f77-4433-bea6-3cc74af9b482")
    input(type="submit", value="Pay $45")
 
   hr
   
   p $90 - 1 applicant and 1 cosigner
-  form(name="PrePage", method="post", action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx")
+  form(name="PrePage", method="post", action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx", target="_blank")
    input(type="hidden", name="LinkId", value="dc33e526-bbef-4891-b97a-b944b16af3ae")
    input(type="submit", value="Pay $90")
 

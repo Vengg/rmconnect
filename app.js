@@ -82,7 +82,7 @@ app.post('/formSend', function(req, res) {
 			}
 			else {
 				console.log("This is the Body");
-				console.log(body);
+				console.log(response);
 				if(response.statusCode == 302){
 					res.send('<style>p{font-size: 20px;} h1{font-size: 22px; font-weight: bold; padding: 6px 0;}</style>' +
 					'<h1>Application Submitted Successfully!</h1>' +

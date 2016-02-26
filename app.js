@@ -76,7 +76,7 @@ app.get('/captcha', cors(), function(req, res, next){
 
 app.post('/formSend', function(req, res) {
 	console.log("I'm Here");
-	var fwdurl = req.pipe(request.post("https://applicationgateway.rentmanager.com/WebApplicationHandler.aspx", function (err, response, body){
+	var fwdurl = req.pipe(request.post("https://applicationgateway.rentmanager.com/WebApplicationHandler.aspx", function(err, response, body){
 			if (err) {
 				next(err)
 			}
@@ -120,7 +120,7 @@ app.post('/formSend', function(req, res) {
 		})
 	);
 	console.log("This is what is being sent back");
-	console.log(res.body);
+	//console.log(res.body);
 	fwdurl.pipe(res);
 });
 	
